@@ -1,7 +1,6 @@
 import React from "react";
 
 const Search = ({ searchTerm, onSearchBook }) => {
-  console.log(searchTerm);
   return (
     <div className="border-2 border-gray-400  m-4 rounded">
       <input

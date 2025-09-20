@@ -9,7 +9,7 @@ const Boimela = () => {
       id: 1,
       title: "JavaScript: The Good Parts",
       author: "Douglas Crockford",
-      featured: true,
+      featured: false,
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const Boimela = () => {
       id: 3,
       title: "You Don’t Know JS Yet",
       author: "Kyle Simpson",
-      featured: true,
+      featured: false,
     },
     {
       id: 4,
@@ -33,7 +33,7 @@ const Boimela = () => {
       id: 5,
       title: "The Pragmatic Programmer",
       author: "Andrew Hunt & David Thomas",
-      featured: true,
+      featured: false,
     },
     {
       id: 6,
@@ -45,7 +45,7 @@ const Boimela = () => {
       id: 7,
       title: "Refactoring",
       author: "Martin Fowler",
-      featured: true,
+      featured: false,
     },
     {
       id: 8,
@@ -63,15 +63,29 @@ const Boimela = () => {
       id: 10,
       title: "The Art of Computer Programming",
       author: "Donald E. Knuth",
-      featured: true,
+      featured: false,
     },
   ];
+  const [books, setBooks] = useState(BOOKS);
+
+  const toggleFeatured = (id) => {
+    setBooks(
+      books.map((book) =>
+        book.id === id ? { ...book, featured: !book.featured } : book
+      )
+    );
+  };
+
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <div>
       <Header header="Boimela"></Header>
       <Search searchTerm={searchTerm} onSearchBook={setSearchTerm}></Search>
-      <BookList searchTerm={searchTerm} BOOKS={BOOKS}></BookList>
+      <BookList
+        ontoggleFeatured={toggleFeatured}
+        searchTerm={searchTerm}
+        BOOKS={books}
+      ></BookList>
     </div>
   );
 };
